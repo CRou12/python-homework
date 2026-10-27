@@ -74,10 +74,22 @@ def main():
         # 2. l'état (rien pour l'instant)
 
         # 3. l'affichage : on prépare l'image en mémoire...
-        screen.fill((randint(0, 255), randint(0, 255), randint(0, 255)))
+        #screen.fill((randint(0, 255), randint(0, 255), randint(0, 255)))
+        for i in range(X):
+            for j in range(Y):
+                rect = pg.Rect(i*W, j*H, W, H)        # x, y, largeur, hauteur, en pixels
+                if (i+j)%2==1:
+                    pg.draw.rect(screen, (200,200,200), rect)
+                else:
+                    pg.draw.rect(screen, (255,255,255), rect)
+
+        snake = [(10, 15), (11, 15), (12, 15)]
+        for elem in snake:
+            i, j = elem
+            rect = pg.Rect(i*W, j*H, W, H)
+            pg.draw.rect(screen, (50,255,100), rect)
         # ... puis on l'envoie à l'écran, une seule fois par tour de boucle
         pg.display.update()
-
     pg.quit()
 
 
