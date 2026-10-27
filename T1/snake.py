@@ -53,7 +53,21 @@ def random_fruit(snake):
 
 
 # --- la boucle de jeu --------------------------------------------------------
+def draw_tile(screen, tile, color):
+    x, y = tile
+    rect = pg.Rect(x*W, y*H, W, H)
+    pg.draw.rect(screen, color, rect)
 
+def draw(screen, snake):
+    for x in range(X):
+        for y in range(Y):
+            if (x+y)%2==1:
+                draw_tile(screen, (x,y), (200,200,200))
+            else:
+                draw_tile(screen, (x,y), (255,255,255))
+    
+    for tile in snake:
+        draw_tile(screen, tile, (50,255,100))
 
 def main():
     running = True
@@ -75,19 +89,9 @@ def main():
 
         # 3. l'affichage : on prépare l'image en mémoire...
         #screen.fill((randint(0, 255), randint(0, 255), randint(0, 255)))
-        for i in range(X):
-            for j in range(Y):
-                rect = pg.Rect(i*W, j*H, W, H)        # x, y, largeur, hauteur, en pixels
-                if (i+j)%2==1:
-                    pg.draw.rect(screen, (200,200,200), rect)
-                else:
-                    pg.draw.rect(screen, (255,255,255), rect)
-
         snake = [(10, 15), (11, 15), (12, 15)]
-        for elem in snake:
-            i, j = elem
-            rect = pg.Rect(i*W, j*H, W, H)
-            pg.draw.rect(screen, (50,255,100), rect)
+        draw(screen, snake)
+
         # ... puis on l'envoie à l'écran, une seule fois par tour de boucle
         pg.display.update()
     pg.quit()
