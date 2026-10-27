@@ -58,7 +58,7 @@ def random_fruit(snake):
 def main():
     running = True
     pg.init()
-    screen = pg.display.set_mode((400, 300))
+    screen = pg.display.set_mode((X*W, Y*H))
     clock = pg.time.Clock()
 
     while running:
@@ -77,7 +77,7 @@ def main():
         screen.fill((randint(0, 255), randint(0, 255), randint(0, 255)))
         # ... puis on l'envoie à l'écran, une seule fois par tour de boucle
         pg.display.update()
-        
+
     pg.quit()
 
 
